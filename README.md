@@ -1,0 +1,1 @@
+I grabbed the first grade at index 0 and used negative indexing to get the last grade

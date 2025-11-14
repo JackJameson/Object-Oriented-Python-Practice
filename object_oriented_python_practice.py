@@ -52,3 +52,10 @@ try:
 except TypeError as e:
     print(f"Error: {e}")
 
+def list_operations(student):
+    student_list = student
+    for s in student_list:
+        print(f"The first grade is: {s.grades[0]} and the last grade is: {s.grades[-1]}")
+        print(f"Total number of grades: {len(s.grades)}")
+        removed_grade = s.grades.pop()
+        print(f"Last grade {removed_grade} removed. Grades after popping the last grade: {s.grades}")
