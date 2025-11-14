@@ -18,6 +18,9 @@ class Student:
             print(f"Grades: {self.grades}")
             print(f"Average Grade: {self.average_grade()}")
             
+        def grades_tuple(self):
+            return tuple(self.grades)
+            
 student1 = Student("Alice", "alice@school.edu", [85, 90, 78])
 student2 = Student("Bob", "bob@school.edu", [88, 92, 80])
 student3 = Student("Charlie", "charlie@school.edu", [90, 85, 87])
@@ -41,4 +44,11 @@ student_dict = {
 
 def get_student_by_email(email):
     return student_dict.get(email, "Student not found.")
+
+immutable_grades = student1.grades_tuple()
+
+try:
+    immutable_grades[0] = 100
+except TypeError as e:
+    print(f"Error: {e}")
 
