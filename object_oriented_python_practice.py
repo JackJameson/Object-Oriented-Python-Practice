@@ -33,3 +33,12 @@ student1.display_info()
 student2.display_info()
 student3.display_info()
 
+student_dict = {
+    "alice@school.edu": student1,
+    "bob@school.edu": student2,
+    "charlie@school.edu": student3
+}
+
+def get_student_by_email(email):
+    return student_dict.get(email, "Student not found.")
+
