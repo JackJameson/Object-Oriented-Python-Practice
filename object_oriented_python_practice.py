@@ -68,4 +68,10 @@ for student in student_dict.values():
         print(f"Valid email: {student.email}")
     else:
         print(f"Invalid email: {student.email}")
-        
+
+grades_above_90 = 0
+for student in student_dict.values():
+    for grade in student.grades:
+        if grade >= 90:
+            grades_above_90 += 1
+print(f"Total number of grades above 90: {grades_above_90}")
