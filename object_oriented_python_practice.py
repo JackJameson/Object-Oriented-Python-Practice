@@ -1,3 +1,5 @@
+import re
+
 class Student:
         def __init__(self, name, email, grades):
             self.name = name
@@ -23,7 +25,7 @@ class Student:
             
 student1 = Student("Alice", "alice@school.edu", [85, 90, 78])
 student2 = Student("Bob", "bob@school.edu", [88, 92, 80])
-student3 = Student("Charlie", "charlie@school.edu", [90, 85, 87])
+student3 = Student("Charlie", "charlie@school@.edu", [90, 85, 87])
 
 student1.add_grade(95)
 student1.add_grade(89)
@@ -39,7 +41,7 @@ student3.display_info()
 student_dict = {
     "alice@school.edu": student1,
     "bob@school.edu": student2,
-    "charlie@school.edu": student3
+    "charlie@school@.edu": student3
 }
 
 def get_student_by_email(email):
@@ -59,3 +61,11 @@ def list_operations(student):
         print(f"Total number of grades: {len(s.grades)}")
         removed_grade = s.grades.pop()
         print(f"Last grade {removed_grade} removed. Grades after popping the last grade: {s.grades}")
+        
+email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+for student in student_dict.values():
+    if re.match(email_pattern, student.email):
+        print(f"Valid email: {student.email}")
+    else:
+        print(f"Invalid email: {student.email}")
+        
