@@ -34,10 +34,6 @@ student2.add_grade(93)
 student3.add_grade(88)
 student3.add_grade(92)
 
-student1.display_info()
-student2.display_info()
-student3.display_info()
-
 student_dict = {
     "alice@school.edu": student1,
     "bob@school.edu": student2,
@@ -45,33 +41,47 @@ student_dict = {
 }
 
 def get_student_by_email(email):
-    return student_dict.get(email, "Student not found.")
+        return student_dict.get(email, "Student not found.")
+    
+def list_operations(students):
+        student_list = students
+        for s in student_list:
+            print(f"The first grade is: {s.grades[0]} and the last grade is: {s.grades[-1]}")
+            print(f"Total number of grades: {len(s.grades)}")
+            removed_grade = s.grades.pop()
+            print(f"Last grade {removed_grade} removed. Grades after popping the last grade: {s.grades}")
 
-immutable_grades = student1.grades_tuple()
+def main():
+    
+    student1.display_info()
+    student2.display_info()
+    student3.display_info()
 
-try:
-    immutable_grades[0] = 100
-except TypeError as e:
-    print(f"Error: {e}")
+    get_student_by_email("alice@school.edu")
+    get_student_by_email("foo@bar.edu")
 
-def list_operations(student):
-    student_list = student
-    for s in student_list:
-        print(f"The first grade is: {s.grades[0]} and the last grade is: {s.grades[-1]}")
-        print(f"Total number of grades: {len(s.grades)}")
-        removed_grade = s.grades.pop()
-        print(f"Last grade {removed_grade} removed. Grades after popping the last grade: {s.grades}")
-        
-email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-for student in student_dict.values():
-    if re.match(email_pattern, student.email):
-        print(f"Valid email: {student.email}")
-    else:
-        print(f"Invalid email: {student.email}")
+    immutable_grades = student1.grades_tuple()
 
-grades_above_90 = 0
-for student in student_dict.values():
-    for grade in student.grades:
-        if grade >= 90:
-            grades_above_90 += 1
-print(f"Total number of grades above 90: {grades_above_90}")
+    try:
+        immutable_grades[0] = 100
+    except TypeError as e:
+        print(f"Error: {e}")
+
+    list_operations([student1, student2, student3])
+            
+    email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    for student in student_dict.values():
+        if re.match(email_pattern, student.email):
+            print(f"Valid email: {student.email}")
+        else:
+            print(f"Invalid email: {student.email}")
+
+    grades_above_90 = 0
+    for student in student_dict.values():
+        for grade in student.grades:
+            if grade > 90:
+                grades_above_90 += 1
+    print(f"Total number of grades above 90: {grades_above_90}")
+
+if __name__ == "__main__":
+    main()
